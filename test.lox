@@ -1,0 +1,108 @@
+print "=== Arithmetic ===";
+print 1 + 2 * 3;
+print (1 + 2) * 3;
+print 10 / 2;
+print 10 - 7;
+
+print "";
+print "=== Variables ===";
+var x = 10;
+var y = 20;
+print x + y;
+
+print "";
+print "=== If / Else ===";
+if (x < y) {
+  print "x < y";
+} else {
+  print "wrong";
+}
+
+print "";
+print "=== While Loop ===";
+var i = 0;
+while (i < 3) {
+  print i;
+  i = i + 1;
+}
+
+print "";
+print "=== For Loop ===";
+for (var j = 0; j < 3; j = j + 1) {
+  print j;
+}
+
+print "";
+print "=== Function ===";
+fun add(a, b) {
+  return a + b;
+}
+print add(5, 7);
+
+print "";
+print "=== Recursion ===";
+fun fact(n) {
+  if (n <= 1) return 1;
+  return n * fact(n - 1);
+}
+print fact(5);
+
+print "";
+print "=== Closure ===";
+fun makeCounter() {
+  var count = 0;
+  fun inc() {
+    count = count + 1;
+    return count;
+  }
+  return inc;
+}
+var counter = makeCounter();
+print counter();
+print counter();
+print counter();
+
+print "";
+print "=== Class ===";
+class Person {
+  init(name) {
+    this.name = name;
+  }
+
+  greet() {
+    print "Hello, " + this.name;
+  }
+}
+
+var p = Person("Alice");
+p.greet();
+
+print "";
+print "=== Inheritance ===";
+class Animal {
+  speak() {
+    print "generic";
+  }
+}
+
+class Dog < Animal {
+  speak() {
+    super.speak();
+    print "woof";
+  }
+}
+
+Dog().speak();
+
+print "";
+print "=== Logical Operators ===";
+print true and false;
+print true or false;
+print !false;
+
+print "";
+print "=== Native Function ===";
+print clock();
+
+print "";
+print "=== Finished ===";
