@@ -2,6 +2,7 @@
 #define clox_profiler_h
 #include <stdint.h>
 #include <time.h>
+#include "chunk.h"
 
 typedef struct {
   double executionTime;
@@ -11,6 +12,7 @@ typedef struct {
   clock_t compilationStart;
 
   uint64_t opcodeCount;
+  uint64_t opcodeFrequency[OP_COUNT];
 } Profiler;
 
 void initProfiler(Profiler* profiler);

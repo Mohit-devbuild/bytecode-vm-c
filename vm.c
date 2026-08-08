@@ -295,6 +295,7 @@ static InterpretResult run() {
 
     uint8_t instruction=READ_BYTE();
     vm.profiler.opcodeCount++;
+    vm.profiler.opcodeFrequency[instruction]++;
     switch (instruction) {
       case OP_CONSTANT: {
         Value constant = READ_CONSTANT();

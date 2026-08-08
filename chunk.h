@@ -43,6 +43,7 @@ typedef enum {
   OP_INHERIT,
   OP_METHOD
 } OpCode;
+#define OP_COUNT (OP_METHOD + 1)
 
 typedef struct {
   int count;
