@@ -1,0 +1,115 @@
+print "========== PROFILER TEST ==========";
+
+// ========================================
+// 1. Heavy computation / loops
+// ========================================
+
+print "--- Computation ---";
+
+var total = 0;
+var i = 0;
+
+while (i < 10000) {
+  total = total + i;
+  i = i + 1;
+}
+
+print total;
+
+
+// ========================================
+// 2. Functions and recursion
+// ========================================
+
+print "--- Functions ---";
+
+fun factorial(n) {
+  if (n <= 1) {
+    return 1;
+  }
+
+  return n * factorial(n - 1);
+}
+
+print factorial(10);
+
+
+// ========================================
+// 3. Closures / upvalues
+// ========================================
+
+print "--- Closures ---";
+
+fun makeCounter() {
+  var count = 0;
+
+  fun counter() {
+    count = count + 1;
+    return count;
+  }
+
+  return counter;
+}
+
+var counter = makeCounter();
+
+print counter();
+print counter();
+print counter();
+
+
+// ========================================
+// 4. Classes and inheritance
+// ========================================
+
+print "--- Classes ---";
+
+class Animal {
+  init(name) {
+    this.name = name;
+  }
+
+  speak() {
+    print this.name;
+  }
+}
+
+class Dog < Animal {
+  speak() {
+    print "Dog";
+  }
+
+  testSuper() {
+    super.speak();
+  }
+}
+
+var dog = Dog("Buddy");
+
+dog.speak();
+dog.testSuper();
+
+
+// ========================================
+// 5. Object allocation / GC pressure
+// ========================================
+
+print "--- Allocation / GC ---";
+
+class Box {
+  init(value) {
+    this.value = value;
+  }
+}
+
+var j = 0;
+
+while (j < 10000) {
+  Box(j);
+  j = j + 1;
+}
+
+print "Allocation test complete";
+
+
+print "========== PROFILER TEST COMPLETE ==========";
