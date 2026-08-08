@@ -4,6 +4,9 @@
 void initProfiler(Profiler* profiler) {
   profiler->executionTime = 0.0;
   profiler->executionStart = 0;
+
+  profiler->compilationTime = 0.0;
+  profiler->compilationStart = 0;
 }
 
 void startExecutionTimer(Profiler* profiler) {
@@ -18,8 +21,21 @@ void stopExecutionTimer(Profiler* profiler) {
       CLOCKS_PER_SEC;
 }
 
+void startCompilationTimer(Profiler* profiler) {
+  profiler->compilationStart = clock();
+}
+
+void stopCompilationTimer(Profiler* profiler) {
+  clock_t compilationEnd = clock();
+
+  profiler->compilationTime =
+      (double)(compilationEnd - profiler->compilationStart) /
+      CLOCKS_PER_SEC;
+}
+
 void printProfilerReport(const Profiler* profiler) {
   printf("\n========== CLOX PROFILER ==========\n");
+  printf("Compilation time: %.3f ms\n",profiler->compilationTime * 1000.0);
   printf("Execution time: %.3f ms\n",profiler->executionTime * 1000.0);
   printf("===================================\n");
 }

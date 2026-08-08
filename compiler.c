@@ -915,6 +915,7 @@ static void statement() {
 }
 
 ObjFunction* compile(const char* source) {
+  startCompilationTimer(&vm.profiler);
   initScanner(source);
   Compiler compiler;
   initCompiler(&compiler, TYPE_SCRIPT);
@@ -929,6 +930,7 @@ ObjFunction* compile(const char* source) {
   }
 
   ObjFunction* function = endCompiler();
+  startCompilationTimer(&vm.profiler);
   return parser.hadError ? NULL : function;
 }
 

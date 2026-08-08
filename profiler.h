@@ -6,11 +6,19 @@
 typedef struct {
   double executionTime;
   clock_t executionStart;
+
+  double compilationTime;
+  clock_t compilationStart;
 } Profiler;
 
 void initProfiler(Profiler* profiler);
+
 void startExecutionTimer(Profiler* profiler);
 void stopExecutionTimer(Profiler* profiler);
+
+void startCompilationTimer(Profiler* profiler);
+void stopCompilationTimer(Profiler* profiler);
+
 void printProfilerReport(const Profiler* profiler);
 
 #endif
