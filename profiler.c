@@ -7,6 +7,8 @@ void initProfiler(Profiler* profiler) {
 
   profiler->compilationTime = 0.0;
   profiler->compilationStart = 0;
+
+  profiler->opcodeCount = 0;
 }
 
 void startExecutionTimer(Profiler* profiler) {
@@ -37,5 +39,6 @@ void printProfilerReport(const Profiler* profiler) {
   printf("\n========== CLOX PROFILER ==========\n");
   printf("Compilation time: %.3f ms\n",profiler->compilationTime * 1000.0);
   printf("Execution time: %.3f ms\n",profiler->executionTime * 1000.0);
+  printf("Opcode executions: %llu\n",(unsigned long long)profiler->opcodeCount);
   printf("===================================\n");
 }

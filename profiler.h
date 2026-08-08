@@ -1,6 +1,6 @@
 #ifndef clox_profiler_h
 #define clox_profiler_h
-
+#include <stdint.h>
 #include <time.h>
 
 typedef struct {
@@ -9,6 +9,8 @@ typedef struct {
 
   double compilationTime;
   clock_t compilationStart;
+
+  uint64_t opcodeCount;
 } Profiler;
 
 void initProfiler(Profiler* profiler);
