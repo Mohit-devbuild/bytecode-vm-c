@@ -1,0 +1,25 @@
+class Counter {
+  init() {
+    this.value = 0;
+  }
+
+  increment() {
+    this.value = this.value + 1;
+  }
+
+  getValue() {
+    return this.value;
+  }
+}
+
+var counter = Counter();
+
+var n = 10000;
+var i = 0;
+
+while (i < n) {
+  counter.increment();
+  i = i + 1;
+}
+
+print counter.getValue();

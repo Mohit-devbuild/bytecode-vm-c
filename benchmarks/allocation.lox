@@ -1,0 +1,15 @@
+class Box {
+  init(value) {
+    this.value = value;
+  }
+}
+
+var n = 10000;
+var i = 0;
+
+while (i < n) {
+  Box(i);
+  i = i + 1;
+}
+
+print "done";

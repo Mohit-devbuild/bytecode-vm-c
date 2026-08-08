@@ -1,0 +1,22 @@
+fun makeCounter() {
+  var count = 0;
+
+  fun increment() {
+    count = count + 1;
+    return count;
+  }
+
+  return increment;
+}
+
+var counter = makeCounter();
+
+var n = 10000;
+var i = 0;
+
+while (i < n) {
+  counter();
+  i = i + 1;
+}
+
+print counter();

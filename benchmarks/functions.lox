@@ -1,0 +1,14 @@
+fun add(a, b) {
+  return a + b;
+}
+
+var n = 10000;
+var i = 0;
+var result = 0;
+
+while (i < n) {
+  result = add(result, i);
+  i = i + 1;
+}
+
+print result;
