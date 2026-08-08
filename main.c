@@ -18,6 +18,7 @@ static void repl() {
     }
 
     interpret(line);
+    printProfilerReport(&vm.profiler);
   }
 }
 
@@ -53,6 +54,7 @@ static char* readFile(const char* path) {
 static void runFile(const char* path) {
   char* source = readFile(path);
   InterpretResult result = interpret(source);
+  printProfilerReport(&vm.profiler);
   free(source);
 
   if (result == INTERPRET_COMPILE_ERROR) exit(65);

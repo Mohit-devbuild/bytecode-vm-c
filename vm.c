@@ -55,6 +55,7 @@ static void defineNative(const char* name, NativeFn function) {
 
 void initVM() {
   resetStack();
+  initProfiler(&vm.profiler);
   vm.objects = NULL;
   vm.bytesAllocated = 0;
   vm.nextGC = 1024 * 1024;
@@ -256,6 +257,7 @@ static void concatenate() {
 }
 
 static InterpretResult run() {
+  startExecutionTimer(&vm.profiler);
   CallFrame* frame = &vm.frames[vm.frameCount - 1];
 
 #define READ_BYTE() (*frame->ip++)
@@ -497,6 +499,7 @@ static InterpretResult run() {
         vm.frameCount--;
         if (vm.frameCount == 0) {
           pop();
+          stopExecutionTimer(&vm.profiler);
           return INTERPRET_OK;
         }
 

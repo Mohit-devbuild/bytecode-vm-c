@@ -4,6 +4,7 @@
 #include "object.h"
 #include "table.h"
 #include "value.h"
+#include "profiler.h"
 
 #define FRAMES_MAX 64
 #define STACK_MAX (FRAMES_MAX * UINT8_COUNT)
@@ -31,6 +32,7 @@ typedef struct {
   int grayCount;
   int grayCapacity;
   Obj** grayStack;
+  Profiler profiler;
 } VM;
 
 typedef enum {

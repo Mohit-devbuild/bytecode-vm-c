@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include "profiler.h"
+
+void initProfiler(Profiler* profiler) {
+  profiler->executionTime = 0.0;
+  profiler->executionStart = 0;
+}
+
+void startExecutionTimer(Profiler* profiler) {
+  profiler->executionStart = clock();
+}
+
+void stopExecutionTimer(Profiler* profiler) {
+  clock_t executionEnd = clock();
+
+  profiler->executionTime =
+      (double)(executionEnd - profiler->executionStart) /
+      CLOCKS_PER_SEC;
+}
+
+void printProfilerReport(const Profiler* profiler) {
+  printf("\n========== CLOX PROFILER ==========\n");
+  printf("Execution time: %.3f ms\n",profiler->executionTime * 1000.0);
+  printf("===================================\n");
+}
