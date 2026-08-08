@@ -13,6 +13,9 @@
 
 void* reallocate(void* pointer, size_t oldSize, size_t newSize) {
   vm.bytesAllocated += newSize - oldSize;
+  if (vm.bytesAllocated > vm.profiler.peakHeapUsage) {
+  vm.profiler.peakHeapUsage = vm.bytesAllocated;
+  }
   if (newSize > oldSize) {
 #ifdef DEBUG_STRESS_GC
     collectGarbage();

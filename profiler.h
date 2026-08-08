@@ -18,6 +18,8 @@ typedef struct {
 
   clock_t gcStart;
   double gcTime;
+
+  size_t peakHeapUsage;
 } Profiler;
 
 void initProfiler(Profiler* profiler);
