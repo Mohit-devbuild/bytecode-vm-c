@@ -20,6 +20,7 @@ typedef struct {
   double gcTime;
 
   size_t peakHeapUsage;
+  size_t totalBytesAllocated;
 } Profiler;
 
 void initProfiler(Profiler* profiler);

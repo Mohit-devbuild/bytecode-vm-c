@@ -21,6 +21,7 @@ void initProfiler(Profiler* profiler) {
   profiler->gcTime = 0.0;
 
   profiler->peakHeapUsage = 0;
+  profiler->totalBytesAllocated = 0;
 }
 
 void startExecutionTimer(Profiler* profiler) {
@@ -55,6 +56,7 @@ void printProfilerReport(const Profiler* profiler) {
   printf("GC count: %llu\n",(unsigned long long)profiler->gcCount);
   printf("GC time: %.3f ms\n",profiler->gcTime * 1000.0);
   printf("Peak heap usage: %zu bytes\n",profiler->peakHeapUsage);
+  printf("Total bytes allocated: %zu bytes\n",profiler->totalBytesAllocated);
   printf("\n----- Instruction Frequency -----\n");
 
   for (int i = 0; i < OP_COUNT; i++) {
