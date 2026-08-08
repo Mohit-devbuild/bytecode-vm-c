@@ -21,6 +21,7 @@ typedef struct {
 
   size_t peakHeapUsage;
   size_t totalBytesAllocated;
+  size_t totalBytesFreed;
 } Profiler;
 
 void initProfiler(Profiler* profiler);

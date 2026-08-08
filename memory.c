@@ -16,6 +16,9 @@ void* reallocate(void* pointer, size_t oldSize, size_t newSize) {
   if (newSize > oldSize) {
     vm.profiler.totalBytesAllocated += newSize - oldSize;
   }
+  if (newSize < oldSize) {
+  vm.profiler.totalBytesFreed += oldSize - newSize;
+  }
   if (vm.bytesAllocated > vm.profiler.peakHeapUsage) {
     vm.profiler.peakHeapUsage = vm.bytesAllocated;
   }
