@@ -13,6 +13,8 @@ typedef struct {
 
   uint64_t opcodeCount;
   uint64_t opcodeFrequency[OP_COUNT];
+
+  uint64_t gcCount;
 } Profiler;
 
 void initProfiler(Profiler* profiler);

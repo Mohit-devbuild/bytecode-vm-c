@@ -214,6 +214,8 @@ static void sweep() {
 }
 
 void collectGarbage() {
+vm.profiler.gcCount++;
+
 #ifdef DEBUG_LOG_GC
   printf("-- gc begin\n");
   size_t before = vm.bytesAllocated;
