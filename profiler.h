@@ -15,6 +15,9 @@ typedef struct {
   uint64_t opcodeFrequency[OP_COUNT];
 
   uint64_t gcCount;
+
+  clock_t gcStart;
+  double gcTime;
 } Profiler;
 
 void initProfiler(Profiler* profiler);

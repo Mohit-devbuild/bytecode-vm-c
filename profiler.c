@@ -16,6 +16,9 @@ void initProfiler(Profiler* profiler) {
   }
 
   profiler->gcCount = 0;
+
+  profiler->gcStart = 0;
+  profiler->gcTime = 0.0;
 }
 
 void startExecutionTimer(Profiler* profiler) {
@@ -48,6 +51,7 @@ void printProfilerReport(const Profiler* profiler) {
   printf("Execution time: %.3f ms\n",profiler->executionTime * 1000.0);
   printf("Opcode executions: %llu\n",(unsigned long long)profiler->opcodeCount);
   printf("GC count: %llu\n",(unsigned long long)profiler->gcCount);
+  printf("GC time: %.3f ms\n",profiler->gcTime * 1000.0);
   printf("\n----- Instruction Frequency -----\n");
 
   for (int i = 0; i < OP_COUNT; i++) {

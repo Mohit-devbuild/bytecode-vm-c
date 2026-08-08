@@ -215,7 +215,7 @@ static void sweep() {
 
 void collectGarbage() {
 vm.profiler.gcCount++;
-
+vm.profiler.gcStart = clock();
 #ifdef DEBUG_LOG_GC
   printf("-- gc begin\n");
   size_t before = vm.bytesAllocated;
@@ -234,6 +234,8 @@ vm.profiler.gcCount++;
          before - vm.bytesAllocated, before, vm.bytesAllocated,
          vm.nextGC);
 #endif
+vm.profiler.gcTime +=
+    (double)(clock() - vm.profiler.gcStart) / CLOCKS_PER_SEC;
 }
 
 void freeObjects() {
