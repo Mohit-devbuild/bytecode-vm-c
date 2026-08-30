@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Bytecode VM profiling, GC vulnerability analysis, and AI-based anomaly detection." />
+  <title>Bytecode VM + AI Profiler</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top">bytecode-vm<span>/</span>ai-profiler</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <nav id="primary-nav" aria-label="Primary navigation">
+        <a href="#overview">Overview</a>
+        <a href="#profiler">Profiler</a>
+        <a href="#ai-profiler">AI Profiler</a>
+        <a href="#research">Research</a>
+        <a href="#links">Links</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow"><span class="status-dot"></span> SYSTEMS + PERFORMANCE + ML</p>
+          <h1>Bytecode VM<br><span>&amp; AI Profiler</span></h1>
+          <p class="hero-copy">
+            A compact project combining garbage-collector vulnerability analysis,
+            runtime profiling, and machine-learning-based anomaly detection for a bytecode VM.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="https://github.com/moonboyknm/bytecode-vm-c-ai-profiler" target="_blank" rel="noreferrer">GitHub ↗</a>
+            <a class="button" href="https://colab.research.google.com/drive/1mFd5XLfHybbzp38zd28GAXYzfHnP1Z3T?usp=sharing" target="_blank" rel="noreferrer">Colab ↗</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="card-kicker"><span>PROJECT FOCUS</span><span class="mini-chip">LIVE MODEL</span></div>
+          <div class="metric-line"><span>VM runtime metrics</span><strong>09</strong></div>
+          <div class="metric-line"><span>AI algorithm</span><strong>IF</strong></div>
+          <div class="metric-line"><span>Dataset observations</span><strong>160</strong></div>
+          <div class="metric-line"><span>Benchmarks</span><strong>08</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="overview" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span>01</span>
+          <div>
+            <p class="eyebrow">OVERVIEW</p>
+            <h2>What this project does</h2>
+          </div>
+        </div>
+        <div class="two-col">
+          <p>
+            The project studies the behavior of a bytecode virtual machine through runtime profiling,
+            with a particular focus on garbage-collector behavior and performance anomalies.
+            The AI-profiler extension uses runtime telemetry to automatically identify unusual executions.
+          </p>
+          <p>
+            The experimental pipeline combines benchmark workloads, VM profiling metrics,
+            feature scaling, Isolation Forest anomaly detection, visualization, and model evaluation.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="profiler" class="section alt">
+      <div class="container">
+        <div class="section-heading">
+          <span>02</span>
+          <div>
+            <p class="eyebrow">MOHIT'S PROFILER</p>
+            <h2>Runtime instrumentation</h2>
+          </div>
+        </div>
+        <div class="feature-grid">
+          <div class="feature"><b>01</b><span>Execution time</span></div>
+          <div class="feature"><b>02</b><span>Compilation time</span></div>
+          <div class="feature"><b>03</b><span>Opcode execution count</span></div>
+          <div class="feature"><b>04</b><span>Instruction frequency report</span></div>
+          <div class="feature"><b>05</b><span>GC count</span></div>
+          <div class="feature"><b>06</b><span>GC time</span></div>
+          <div class="feature"><b>07</b><span>Peak heap usage</span></div>
+          <div class="feature"><b>08</b><span>Total bytes allocated</span></div>
+          <div class="feature"><b>09</b><span>Total bytes freed</span></div>
+        </div>
+        <div class="note-box">
+          <span class="note-label">HOT PATH</span>
+          <p>The instruction-frequency report provides the foundation for hot-path analysis in the profiler.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="ai-profiler" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span>03</span>
+          <div>
+            <p class="eyebrow">MY PART</p>
+            <h2>AI-based anomaly detection</h2>
+          </div>
+        </div>
+        <p class="lead">
+          The AI profiler analyzes eight runtime features from 160 VM observations and identifies unusual runs using an unsupervised Isolation Forest model.
+        </p>
+
+        <div class="diagram-wrap" aria-label="AI profiler flow diagram">
+          <div class="diagram-row">
+            <div class="node"><strong>Lox VM Benchmarks</strong><small>allocation · arithmetic · closures · functions · inheritance · loops · objects · recursion</small></div>
+            <div class="arrow">→</div>
+            <div class="node"><strong>Runtime Profiling</strong><small>execution · opcodes · GC · memory</small></div>
+            <div class="arrow">→</div>
+            <div class="node"><strong>160 Records</strong><small>32 configurations × 5 runs</small></div>
+          </div>
+          <div class="diagram-connector">↓</div>
+          <div class="diagram-row">
+            <div class="node"><strong>8 Features</strong><small>execution, opcode, GC, heap, allocation</small></div>
+            <div class="arrow">→</div>
+            <div class="node"><strong>StandardScaler</strong><small>feature normalization</small></div>
+            <div class="arrow">→</div>
+            <div class="node accent"><strong>Isolation Forest</strong><small>100 trees · 5% contamination</small></div>
+          </div>
+          <div class="diagram-connector">↓</div>
+          <div class="diagram-split">
+            <div class="node"><strong>Normal Run</strong><small>label +1</small></div>
+            <div class="node danger"><strong>Anomaly</strong><small>label −1 + anomaly score</small></div>
+          </div>
+          <div class="diagram-connector">↓</div>
+          <div class="node wide"><strong>Evaluation &amp; Visualization</strong><small>anomaly scatter plot · confusion matrix · precision · recall · F1-score</small></div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat"><strong>160</strong><span>runtime observations</span></div>
+          <div class="stat"><strong>8</strong><span>ML input features</span></div>
+          <div class="stat"><strong>100</strong><span>Isolation Forest trees</span></div>
+          <div class="stat"><strong>5%</strong><span>contamination setting</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <div class="section-heading">
+          <span>04</span>
+          <div>
+            <p class="eyebrow">DATASET</p>
+            <h2>160 runtime observations</h2>
+          </div>
+        </div>
+        <p class="lead">32 benchmark configurations were executed five times each across eight VM workloads.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Runtime metric</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Compilation time</td><td>Time spent compiling the workload</td></tr>
+              <tr><td>Execution time</td><td>Runtime of the compiled program</td></tr>
+              <tr><td>Opcode executions</td><td>Total VM instruction executions</td></tr>
+              <tr><td>GC count</td><td>Number of garbage-collection cycles</td></tr>
+              <tr><td>GC time</td><td>Time spent in garbage collection</td></tr>
+              <tr><td>Peak heap usage</td><td>Maximum live heap size</td></tr>
+              <tr><td>Total bytes allocated</td><td>Cumulative memory allocation</td></tr>
+              <tr><td>Total bytes freed</td><td>Cumulative memory reclamation</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span>05</span>
+          <div>
+            <p class="eyebrow">CASE STUDIES</p>
+            <h2>Three views of VM behavior</h2>
+          </div>
+        </div>
+        <div class="case-grid">
+          <article class="case-card"><span class="case-num">01</span><h3>Allocation &amp; GC</h3><p>Examines how memory-management activity changes as allocation workload increases, using GC and allocation metrics as runtime signals.</p></article>
+          <article class="case-card"><span class="case-num">02</span><h3>Recursive execution</h3><p>Shows how increasing recursive workloads drive opcode execution and runtime growth, linking algorithmic behavior to VM-level cost.</p></article>
+          <article class="case-card"><span class="case-num">03</span><h3>Runtime anomalies</h3><p>Applies the anomaly detector to the full dataset and evaluates unusual runs using anomaly labels, scores, and classification metrics.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="research" class="section alt">
+      <div class="container">
+        <div class="section-heading">
+          <span>06</span>
+          <div>
+            <p class="eyebrow">RESEARCH</p>
+            <h2>Gaps &amp; contribution</h2>
+          </div>
+        </div>
+        <div class="two-col research-copy">
+          <div>
+            <h3>Research gap</h3>
+            <p>Existing work explores machine-learning-based performance anomaly detection, especially in cloud and application settings, but gives less attention to bytecode VMs and language-runtime behavior.</p>
+            <p>Performance anomalies are also often described through general system metrics instead of VM-specific execution characteristics.</p>
+          </div>
+          <div>
+            <h3>What we did</h3>
+            <p>We apply Isolation Forest directly to bytecode-VM telemetry, combining execution, opcode, garbage-collection, heap, and allocation metrics in one anomaly-detection pipeline.</p>
+            <p>The detected observations are then examined through visualization and evaluated with precision, recall, F1-score, and a confusion matrix.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="links" class="section links-section">
+      <div class="container">
+        <div class="section-heading">
+          <span>07</span>
+          <div>
+            <p class="eyebrow">REFERENCES</p>
+            <h2>Project &amp; papers</h2>
+          </div>
+        </div>
+        <div class="links-grid">
+          <article class="link-card">
+            <span class="link-kicker">PROJECT</span>
+            <h3>GitHub Repository</h3>
+            <p>The full bytecode VM project, profiler implementation, AI-profiler directory, and supporting experiment artifacts.</p>
+            <a href="https://github.com/moonboyknm/bytecode-vm-c-ai-profiler" target="_blank" rel="noreferrer">Open repository ↗</a>
+          </article>
+          <article class="link-card">
+            <span class="link-kicker">NOTEBOOK</span>
+            <h3>Google Colab</h3>
+            <p>The notebook used to present and run the AI-profiler experiment in a reproducible, step-by-step format.</p>
+            <a href="https://colab.research.google.com/drive/1mFd5XLfHybbzp38zd28GAXYzfHnP1Z3T?usp=sharing" target="_blank" rel="noreferrer">Open notebook ↗</a>
+          </article>
+        </div>
+
+        <div class="paper-list">
+          <div class="paper-group">
+            <p class="eyebrow">GC VULNERABILITY PAPERS</p>
+            <a href="https://dl.acm.org/doi/epdf/10.1145/3576915.3616611" target="_blank" rel="noreferrer"><span>iLeakage Paper</span><em>memory side-channel perspective ↗</em></a>
+            <a href="https://www.usenix.org/conference/usenixsecurity21/presentation/han-hyungseok" target="_blank" rel="noreferrer"><span>Top GC Vulnerabilities</span><em>garbage-collector security ↗</em></a>
+            <a href="https://www.usenix.org/legacy/event/woot/tech/final_files/Novark.pdf" target="_blank" rel="noreferrer"><span>Securing the Heap</span><em>heap protection perspective ↗</em></a>
+            <a href="https://www.usenix.org/conference/usenixsecurity21/presentation/ragab" target="_blank" rel="noreferrer"><span>Rage Against the Machine</span><em>hardware / memory attack perspective ↗</em></a>
+          </div>
+          <div class="paper-group">
+            <p class="eyebrow">AI PROFILER PAPERS</p>
+            <a href="https://onlinelibrary.wiley.com/doi/10.1002/cpe.5306" target="_blank" rel="noreferrer"><span>Isolation Forest for Anomaly Detection</span><em>performance anomaly detection ↗</em></a>
+            <a href="https://ieeexplore.ieee.org/document/4781136" target="_blank" rel="noreferrer"><span>Isolation Forest</span><em>foundational anomaly-detection method ↗</em></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <span>BYTECODE VM + AI PROFILER</span>
+      <span>simple / local / static</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
