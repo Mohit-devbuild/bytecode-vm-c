@@ -1,0 +1,17 @@
+// string_concat.lox -- OP_ADD on strings: allocate, copy, hash, intern.
+// Requires a global `n` (iteration count), injected by the runner.
+// The string grows by 2 characters per iteration, so every iteration creates a
+// brand-new distinct string and total work is O(n^2) in characters. That is
+// intentional: it measures string creation, the intern table and freeing of the
+// dead intermediates. Final length is 2*n. Keep n modest.
+
+fun run(n) {
+  var s = "";
+  for (var i = 0; i < n; i = i + 1) {
+    s = s + "ab";
+  }
+  return s;
+}
+
+var result = run(n);
+print "done";

@@ -1,0 +1,32 @@
+// closures.lox -- OP_CLOSURE, upvalue capture, GET/SET_UPVALUE, CLOSE_UPVALUE.
+// Requires a global `n` (iteration count), injected by the runner.
+// Per iteration: one new closure that captures a fresh variable (capture + close
+// on return), plus one call through a long-lived counter closure (open upvalue
+// read/write).
+
+fun makeCounter() {
+  var count = 0;
+  fun increment() {
+    count = count + 1;
+    return count;
+  }
+  return increment;
+}
+
+fun makeAdder(x) {
+  fun add(y) { return x + y; }
+  return add;
+}
+
+fun run(n) {
+  var counter = makeCounter();
+  var last = 0;
+  for (var i = 0; i < n; i = i + 1) {
+    var adder = makeAdder(i);
+    last = adder(1);
+    counter();
+  }
+  return counter() + last;
+}
+
+print run(n);

@@ -1,0 +1,22 @@
+// control_flow.lox -- JUMP_IF_FALSE, JUMP, LOOP, EQUAL, GREATER, and/or short-circuit.
+// Requires a global `n` (iteration count), injected by the runner.
+// Metric target: branching cost. A 3-phase counter (no modulo in Lox)
+// makes the taken branch rotate every iteration.
+
+fun run(n) {
+  var count = 0;
+  var phase = 0;
+  for (var i = 0; i < n; i = i + 1) {
+    if (phase == 0) count = count + 1;
+    else if (phase == 1) count = count + 2;
+    else count = count + 3;
+
+    phase = phase + 1;
+    if (phase == 3) phase = 0;
+
+    if (phase != 1 and count > 0 or i == 0) count = count + 1;
+  }
+  return count;
+}
+
+print run(n);

@@ -1,0 +1,18 @@
+// globals.lox -- GET_GLOBAL / SET_GLOBAL traffic (hash table lookups).
+// Requires a global `n` (iteration count), injected by the runner.
+// Metric target: global variable access cost, compare against locals.lox.
+// Everything below runs at top level on purpose, including the loop counter.
+
+var g1 = 1;
+var g2 = 2;
+var g3 = 3;
+var g4 = 4;
+var gi = 0;
+
+while (gi < n) {
+  g1 = g2; g2 = g3; g3 = g4; g4 = g1;
+  g1 = g2; g2 = g3; g3 = g4; g4 = g1;
+  gi = gi + 1;
+}
+
+print g1;

@@ -1,0 +1,25 @@
+// properties.lox -- GET_PROPERTY / SET_PROPERTY on instance fields.
+// Requires a global `n` (iteration count), injected by the runner.
+// Metric target: field access cost (hash lookups on the instance table),
+// no method calls and no allocation in the hot path. Compare with locals.lox,
+// which does the same rotation on stack slots.
+
+class Box {
+  init() {
+    this.a = 1;
+    this.b = 2;
+    this.c = 3;
+    this.d = 4;
+  }
+}
+
+fun run(n) {
+  var o = Box();
+  for (var i = 0; i < n; i = i + 1) {
+    o.a = o.b; o.b = o.c; o.c = o.d; o.d = o.a;
+    o.a = o.b; o.b = o.c; o.c = o.d; o.d = o.a;
+  }
+  return o.a;
+}
+
+print run(n);

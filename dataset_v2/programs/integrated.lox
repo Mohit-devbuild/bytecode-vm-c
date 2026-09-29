@@ -1,0 +1,50 @@
+// integrated.lox -- mixed workload: classes, methods, closures, floating point,
+// occasional string growth, branches. Not tied to one opcode family; meant to
+// show how the individual costs combine in a realistic program.
+// Requires a global `n` (iteration count), injected by the runner.
+
+class Vec {
+  init(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+  add(o) { return Vec(this.x + o.x, this.y + o.y); }
+  scale(k) { return Vec(this.x * k, this.y * k); }
+  dot(o) { return this.x * o.x + this.y * o.y; }
+}
+
+fun makeAccumulator() {
+  var total = 0;
+  fun acc(v) {
+    total = total + v;
+    return total;
+  }
+  return acc;
+}
+
+fun step(pos, vel) {
+  return pos.add(vel.scale(0.5));
+}
+
+fun run(n) {
+  var pos = Vec(0, 0);
+  var vel = Vec(1, 2);
+  var acc = makeAccumulator();
+  var label = "";
+  var tick = 0;
+  var total = 0;
+  for (var i = 0; i < n; i = i + 1) {
+    pos = step(pos, vel);
+    if (pos.x > 1000) pos = Vec(0, 0);
+    total = acc(pos.dot(vel));
+
+    tick = tick + 1;
+    if (tick == 1000) {
+      tick = 0;
+      label = label + "x";
+    }
+  }
+  return total;
+}
+
+print run(n);

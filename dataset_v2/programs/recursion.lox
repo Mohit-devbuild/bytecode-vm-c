@@ -1,0 +1,12 @@
+// recursion.lox -- naive fibonacci, n = argument to fib (NOT an iteration count).
+// Requires a global `n`, injected by the runner. Keep n <= 31 or so:
+// calls grow ~1.6x per step (fib(31) is ~4.4M calls), and stock clox
+// caps call depth at FRAMES_MAX = 64, which fib(n) never exceeds for n < 64.
+// Metric target: call/return frame push-pop cost, stack depth behaviour.
+
+fun fib(k) {
+  if (k < 2) return k;
+  return fib(k - 1) + fib(k - 2);
+}
+
+print fib(n);

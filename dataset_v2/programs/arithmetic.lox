@@ -1,0 +1,14 @@
+// arithmetic.lox -- ADD SUBTRACT MULTIPLY DIVIDE NEGATE on local operands.
+// Requires a global `n` (iteration count), injected by the runner.
+// Metric target: raw numeric opcode throughput, no calls, no allocation.
+
+fun run(n) {
+  var acc = 0;
+  for (var i = 0; i < n; i = i + 1) {
+    acc = acc + i * 2 - i / 4;
+    acc = -acc;
+  }
+  return acc;
+}
+
+print run(n);

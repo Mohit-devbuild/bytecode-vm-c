@@ -1,0 +1,26 @@
+// classes.lox -- instance creation: OP_CALL on a class, initializer dispatch,
+// SET_PROPERTY on a fresh instance (field table growth).
+// Requires a global `n` (iteration count), injected by the runner.
+// Metric target: object construction cost. Instances die young, so some GC
+// activity is unavoidable here; gc_stress.lox is the one that isolates GC.
+
+class Point {
+  init(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+
+class Empty {}
+
+fun run(n) {
+  var p = nil;
+  var e = nil;
+  for (var i = 0; i < n; i = i + 1) {
+    p = Point(i, i);
+    e = Empty();
+  }
+  return p.x;
+}
+
+print run(n);

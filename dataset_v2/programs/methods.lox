@@ -1,0 +1,30 @@
+// methods.lox -- OP_INVOKE, OP_SUPER_INVOKE, `this` access inside methods.
+// Requires a global `n` (iteration count), injected by the runner.
+// Per iteration: 2 direct method calls, 1 call that goes through super, 1 getter.
+// The instances are created once, outside the loop: no allocation in the hot path.
+
+class Counter {
+  init() { this.total = 0; }
+  add(x) {
+    this.total = this.total + x;
+    return this;
+  }
+  get() { return this.total; }
+}
+
+class Fast < Counter {
+  add(x) { return super.add(x); }
+}
+
+fun run(n) {
+  var c = Counter();
+  var f = Fast();
+  for (var i = 0; i < n; i = i + 1) {
+    c.add(1);
+    f.add(1);
+    c.get();
+  }
+  return c.get() + f.get();
+}
+
+print run(n);

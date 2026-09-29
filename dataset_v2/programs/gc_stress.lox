@@ -1,0 +1,31 @@
+// gc_stress.lox -- garbage collector under a growing live set.
+// Requires a global `n` (iteration count), injected by the runner.
+// Each iteration retains one node in a linked list (live set grows to n)
+// and allocates two short-lived garbage nodes. Every collection has to mark
+// the whole live list, so GC cost per cycle rises as the list grows.
+// The final traversal keeps the list reachable until the end of the run.
+
+class Node {
+  init(next) {
+    this.next = next;
+    this.payload = nil;
+  }
+}
+
+fun run(n) {
+  var head = nil;
+  for (var i = 0; i < n; i = i + 1) {
+    head = Node(head);
+    var g1 = Node(nil);
+    var g2 = Node(g1);
+  }
+  var len = 0;
+  var cur = head;
+  while (cur != nil) {
+    len = len + 1;
+    cur = cur.next;
+  }
+  return len;
+}
+
+print run(n);
