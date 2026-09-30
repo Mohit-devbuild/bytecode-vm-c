@@ -1,0 +1,8 @@
+Confusion matrix (rows: ground truth normal/anomaly; columns: predicted normal/anomaly):
+[[148   2]
+ [  4   6]]
+Ground-truth anomalies: 10
+Isolation Forest anomalies: 8
+Precision: 0.750000
+Recall: 0.600000
+F1 score: 0.666667
