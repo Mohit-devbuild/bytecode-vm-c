@@ -1,0 +1,47 @@
+print "Test 1: Basic String Concatenation";
+var prefix = "Clox";
+var suffix = " VM Fix";
+var result = prefix + suffix;
+print result; // Expected: Clox VM Fix
+
+print "Test 2: High-Iteration String Accumulation Loop";
+var str = "";
+var i = 0;
+while (i < 5000) {
+  str = str + "a";
+  i = i + 1;
+}
+print "String accumulation loop completed (5,000 iterations).";
+
+print "Test 3: GC Stability Under Interleaved Allocation";
+fun buildGarbage(n) {
+  var temp = "";
+  var j = 0;
+  while (j < 100) {
+    temp = temp + "junk";
+    j = j + 1;
+  }
+  return n * 2;
+}
+
+var k = 0;
+while (k < 50) {
+  var dummy = buildGarbage(k);
+  k = k + 1;
+}
+print "Interleaved function call & temporary allocation passed.";
+
+print "Test 4: General Interpreter Regression Checks";
+class Tester {
+  init(name) {
+    this.name = name;
+  }
+  speak() {
+    print "Hello from " + this.name;
+  }
+}
+
+var instance = Tester("Validated Clox");
+instance.speak(); // Expected: Hello from Validated Clox
+
+print "All Validation Tests Completed Successfully";

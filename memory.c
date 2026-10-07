@@ -234,8 +234,13 @@ vm.profiler.gcStart = clock();
   traceReferences();
   tableRemoveWhite(&vm.strings);
   sweep();
-
+  
+  size_t minGCThreshold = 1024 * 1024; 
   vm.nextGC = vm.bytesAllocated * GC_HEAP_GROW_FACTOR;
+  
+  if (vm.nextGC < minGCThreshold) {
+      vm.nextGC = minGCThreshold;
+  }
 
 #ifdef DEBUG_LOG_GC
   printf("-- gc end\n");
